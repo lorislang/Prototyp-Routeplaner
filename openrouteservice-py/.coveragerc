@@ -1,0 +1,23 @@
+[run]
+branch = False
+source = codecov
+omit =
+    */venv/*
+    */.venv/*
+    */.env/*
+    */.tox/*
+    */docs/*
+    tests/*
+    setup.py
+
+[report]
+omit =
+    */venv/*
+    */.venv/*
+    */.env/*
+    */.tox/*
+    */docs/*
+    tests/*
+    setup.py
+exclude_lines =
+    pragma: no cover

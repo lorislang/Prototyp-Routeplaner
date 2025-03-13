@@ -1,0 +1,53 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+        exclude: |
+          (?x)(
+              ^conda.recipe/meta.yaml
+          )
+      - id: check-json
+      - id: forbid-new-submodules
+      - id: mixed-line-ending
+        args: [ '--fix=lf' ]
+        description: Forces to replace line ending by the UNIX 'lf' character.
+      - id: pretty-format-json
+        args: [ '--no-sort-keys' ]
+      - id: no-commit-to-branch
+        args: [ --branch, master ]
+      - id: no-commit-to-branch
+        args: [ --branch, main ]
+
+  - repo: https://github.com/ambv/black
+    rev: 23.3.0
+    hooks:
+      - id: black
+        args: # arguments to configure black
+          - --line-length=80
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+        additional_dependencies:
+          [
+            "flake8-bugbear",
+            "flake8-coding",
+            "flake8-comprehensions",
+            "flake8-debugger",
+            "flake8-deprecated",
+            "flake8-pep3101",
+            "flake8-polyfill",
+            "flake8-print",
+            "flake8-docstrings",
+          ]
+        exclude: |
+          (?x)(
+              ^test/* |
+              ^docs/*
+          )
+        args:
+          - "--max-line-length=120"
+          - "--ignore=P101,D202,D401"
